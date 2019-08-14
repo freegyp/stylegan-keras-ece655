@@ -446,9 +446,9 @@ def _preprocess(element):
 	return images
 
 def main():
-	gan = GAN(img_size=256,lr=0.0001)#, steps=9000,preTrained=True)
+	gan = GAN(img_size=256,lr=0.0001, steps=3000,preTrained=True)
 	dataset_dir = "{0}/datasets".format("gs://face-images-ece655")
-	ds = tfds.load('celeb_a_hq/256',split = 'train', data_dir=dataset_dir).map(_preprocess, num_parallel_calls=4).shuffle(
+	ds = tfds.load('celeb_a_hq/256',split = 'train', data_dir=dataset_dir).map(_preprocess, num_parallel_calls=4).repeat().shuffle(
         buffer_size=1000).batch(8)
 	ds = tfds.as_numpy(ds)
 	train_forever(gan, ds)
