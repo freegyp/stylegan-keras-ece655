@@ -12,7 +12,6 @@ import tensorflow_gan as tfgan
 
 from stylegan.generator import _generator,_style_mapping,AdaInstanceNormalization
 from stylegan.discriminator import _discriminator
-from stylegan.adamlr import Adam_lr_mult
 
 from functools import partial
 
